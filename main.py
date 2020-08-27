@@ -21,6 +21,11 @@ async def reddit(query, ctx):
 
     for post in subreddit.search(query):
         posts.append(post.selftext)
+
+    print(posts)
+    filtered_posts = list(filter(lambda k: query in k, posts))
+    if len(filtered_posts) > 0:
+        posts = filtered_posts
     try:
         to_send = random.choice(posts)
         await ctx.send(to_send)
